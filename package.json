@@ -1,0 +1,25 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "Calcula o total de páginas, a média por sessão, quantas sessões alcançaram a meta e uma classificação como Leitura intensa, Bom ritmo ou Ritmo inicial.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tailwindcss -i ./src/input.css -o ./src/output.css --watch=always --poll",
+    "build": "tailwindcss -i ./src/input.css -o ./src/output.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zjonathas/Acompanhamento-de-leitura.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zjonathas/Acompanhamento-de-leitura/issues"
+  },
+  "homepage": "https://github.com/Zjonathas/Acompanhamento-de-leitura#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

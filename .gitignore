@@ -147,3 +147,11 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# IDE / Editores
+.vscode/
+.idea/
+# Sistema operacional (Windows / macOS)
+Thumbs.db
+Desktop.ini
+.DS_Store
