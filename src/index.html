@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="output.css">
     <title>Acompanhamento de leitura</title>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased flex flex-col min-h-screen">
     <header class="flex gap-3">
         <nav>
             <a href="#">Início</a>
@@ -16,14 +16,15 @@
 
     </header>
 
-    <main class="p-6">
-        
-        
-        
-        
-        
-        
-        
+    <main class="max-w-5xl mx-auto w-full p-6 mt-6 flex flex-col gap-12">
+        <section id="sobre" class="bg-white p-8 rounded-lg shadow-sm border border-slate-200">
+            <h2 class="text-2xl font-semibold mb-4 text-primaria">O Desafio: Dom Quixote</h2>
+            <p class="mb-4 leading-relaxed text-slate-700">A meta deste desafio é manter uma rotina de leitura contínua, avançando pelas páginas deste clássico em seis sessões programadas.</p>
+            <div class="bg-slate-50 border-l-4 border-destaque p-4 rounded text-primaria font-medium">
+                Meta de referência: 30 páginas por sessão
+            </div>
+        </section>
+
         <section id="progresso">
             <h3 class="text-2xl my-4 text-primaria">Progresso das sessões</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -64,9 +65,8 @@
                 </article>
             </div>
         </section>
-
-
     </main>
+
 
     <footer>
 
