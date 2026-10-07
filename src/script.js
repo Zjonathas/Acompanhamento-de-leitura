@@ -5,7 +5,7 @@ const sessao4 = 30;
 const sessao5 = 40;
 const sessao6 = 30;
 
-const paginasLidas = [sessao1, sessao2, sessao3, sessao4, sessao5, sessao6];
+const paginasLidas = [];
 
 const metaPorSessao = 30;
 const sessoes = [
@@ -19,9 +19,14 @@ const sessoes = [
 
 function calcularTotalPaginas(){
   let soma = 0;
-  paginasLidas.forEach(numero => {
-    soma += numero;
-  });
+  if (paginasLidas === null || paginasLidas.length === 0 || paginasLidas === undefined){
+    return console.warn("Nenhuma página registrada");
+  }
+  else {
+    paginasLidas.forEach(numero => {
+      soma += numero;
+    });
+  }
   return soma
 }
 // Falta adicionar condicionais para valores nulos ou não numericos
