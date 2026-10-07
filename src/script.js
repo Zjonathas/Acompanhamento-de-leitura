@@ -28,7 +28,7 @@ function calcularTotalPaginas(){
 function calcularMediaPaginas(){
   const total = calcularTotalPaginas();
   const quantidadeDeSessoes = paginasLidas.length;
-  const media = total / quantidadeDeSessoes;
+  let media = total / quantidadeDeSessoes;
   return media
 }
 
@@ -47,8 +47,10 @@ function calcularClassificacao(){
   }
 }
 
+console.group('Testes');
 console.log(calcularTotalPaginas());
 
 console.log(calcularMediaPaginas());
 
-console.log(calcularClassificacao());
+console.log(calcularClassificacao()); 
+console.groupEnd();
