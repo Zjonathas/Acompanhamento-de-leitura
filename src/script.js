@@ -19,8 +19,8 @@ const sessoes = [
 
 function calcularTotalPaginas(){
   let soma = 0;
-  if (paginasLidas === null || paginasLidas.length === 0 || paginasLidas === undefined){
-    return console.warn("Nenhuma página registrada");
+  if (paginasLidas === undefined || paginasLidas === null || paginasLidas.length === 0){
+    return console.log("Nenhuma página registrada");
   }
   else {
     paginasLidas.forEach(numero => {
@@ -29,7 +29,7 @@ function calcularTotalPaginas(){
   }
   return soma
 }
-// Falta adicionar condicionais para valores nulos ou não numericos
+
 function calcularMediaPaginas(){
   const total = calcularTotalPaginas();
   const quantidadeDeSessoes = paginasLidas.length;
@@ -39,15 +39,15 @@ function calcularMediaPaginas(){
 
 function calcularClassificacao(){
   const media = calcularMediaPaginas();
-  if (media > metaPorSessao * 0.75) {
+  if (media >= metaPorSessao * 0.75) {
     return "Leitura intensa"
   }
 
-  else if (media > metaPorSessao * 0.5) {
+  else if (media >= metaPorSessao * 0.5) {
     return "Bom rítimo"
   }
 
-  else if (media > metaPorSessao * 0.25) {
+  else if (media >= metaPorSessao * 0.25) {
     return "Ritmo inicial"
   }
 }
