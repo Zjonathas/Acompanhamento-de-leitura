@@ -8,12 +8,12 @@ const sessao6 = 40;
 
 const metaPorSessao = 30;
 let sessoes = [
-  // { id: 1, data: "05/10/2026", paginas: sessao1 },
-  // { id: 2, data: "06/10/2026", paginas: sessao2 },
-  // { id: 3, data: "10/10/2026", paginas: sessao3 },
-  // { id: 4, data: "14/10/2026", paginas: sessao4 },
-  // { id: 5, data: "15/10/2026", paginas: sessao5 },
-  // { id: 6, data: "20/10/2026", paginas: sessao6 },
+  { id: 1, data: "05/10/2026", paginas: sessao1 },
+  { id: 2, data: "06/10/2026", paginas: sessao2 },
+  { id: 3, data: "10/10/2026", paginas: sessao3 },
+  { id: 4, data: "14/10/2026", paginas: sessao4 },
+  { id: 5, data: "15/10/2026", paginas: sessao5 },
+  { id: 6, data: "20/10/2026", paginas: sessao6 },
 ];
 
 const paginasLidas = sessoes.map(sessao => sessao.paginas);
