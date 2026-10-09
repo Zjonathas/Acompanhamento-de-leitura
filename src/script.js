@@ -20,47 +20,56 @@ const paginasLidas = sessoes.map(sessao => sessao.paginas);
 
 function calcularTotalPaginas(){
   let soma = 0;
-  if (!paginasLidas || paginasLidas === 0){
-    return console.log("Nenhuma página registrada");
+  if (!paginasLidas || paginasLidas.length === 0){
+    return 0;
   }
-  else {
-    paginasLidas.forEach(numero => {
-      soma += numero;
-    });
-  }
+  paginasLidas.forEach(numero => {
+    soma += numero;
+  });
   return soma
 }
 
 function calcularMediaPaginas(){
   const total = calcularTotalPaginas();
   const quantidadeDeSessoes = paginasLidas.length;
-  let media = total / quantidadeDeSessoes;
-  return media
+  if (!total || quantidadeDeSessoes === 0){
+    return 0;
+  }
+  else {
+    let media = total / quantidadeDeSessoes;
+    return media;
+  }
 }
 
 function calcularClassificacao(){
   const media = calcularMediaPaginas();
-  if (media >= metaPorSessao * 0.75) {
+
+  if (!media || isNaN(media) || media === 0) {
+    return "Nenhuma classificação";
+  }
+  else if (media >= metaPorSessao * 0.75) {
     return "Leitura intensa"
   }
 
   else if (media >= metaPorSessao * 0.5) {
-    return "Bom rítimo"
+    return "Bom ritmo"
   }
 
   else if (media >= metaPorSessao * 0.25) {
     return "Ritmo inicial"
   }
+  else {
+    return "Abaixo da meta";
+  }
 }
-
 
 const containerCards = document.getElementById("cards-sessoes");
 const totalPaginas = document.getElementById("total-paginas");
 const mediaPaginas = document.getElementById("media-paginas");
 const classificacao = document.getElementById("classificacao");
 
-function validarElementos(elementos){
-  if (!elementos){
+function validarElementosResultados(elemento){
+  if (!elemento || elemento === undefined){
     console.error("Elementos não encontrados");
     return false;
   }
@@ -68,13 +77,13 @@ function validarElementos(elementos){
 }
 
 function criarResultados(){
-  if (validarElementos(totalPaginas)){
+  if (validarElementosResultados(totalPaginas)){
     totalPaginas.innerHTML = calcularTotalPaginas();
   }
-  if (validarElementos(mediaPaginas)){
+  if (validarElementosResultados(mediaPaginas)){
     mediaPaginas.innerHTML = calcularMediaPaginas().toFixed(0);
   }
-  if (validarElementos(classificacao)){
+  if (validarElementosResultados(classificacao)){
     classificacao.innerHTML = calcularClassificacao();
   }
 }
