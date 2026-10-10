@@ -11,21 +11,21 @@
 <body class="bg-slate-50 text-slate-900 font-sans antialiased flex flex-col min-h-screen">
     <header class="p-6 text-white bg-primaria drop-shadow-2xl">
         <div class="max-w-5xl mx-auto">
-            <h1 class="text-4xl font-bold mb-2">Acompanhamento de leitura</h1>
+            <h1 class="text-3xl sm:text-4xl font-bold mb-2">Acompanhamento de leitura</h1>
             <p class="text-slate-300">Projeto de monitoramento de progresso literário</p>
         </div>
     </header>
     
     <nav class="bg-quartenaria text-white font-semibold">
         <div class="max-w-5xl mx-auto gap-6 p-4 flex flex-wrap">
-            <a href="#sobre">Sobre o desafio</a>
-            <a href="#progresso">Progresso das sessões</a>
-            <a href="#resultados">Desempenho final</a>
+            <a href="#sobre" class="hover:text-slate-300 transition-colors duration-200">Sobre o desafio</a>
+            <a href="#progresso" class="hover:text-slate-300 transition-colors duration-200">Progresso das sessões</a>
+            <a href="#resultados" class="hover:text-slate-300 transition-colors duration-200">Desempenho final</a>
         </div>
     </nav>
     
     <main class="max-w-5xl mx-auto w-full p-6 mt-6 flex flex-col gap-12">
-        <section id="sobre" class="bg-white p-8 rounded-lg shadow-sm border border-slate-200">
+        <section id="sobre" class="bg-white p-6 sm:p-8 rounded-lg shadow-sm border border-slate-200">
             <h2 class="text-2xl font-semibold mb-4 text-primaria">O Desafio: Dom Quixote</h2>
             <p class="mb-4 leading-relaxed text-slate-700">A meta deste desafio é manter uma rotina de leitura contínua,
                 avançando pelas páginas deste clássico em seis sessões programadas.</p>
@@ -41,21 +41,21 @@
             </div>
         </section>
 
-        <section id="resultados" class="bg-primaria text-white p-8 rounded-lg shadow-md mb-8">
+        <section id="resultados" class="bg-primaria text-white p-6 sm:p-8 rounded-lg shadow-md mb-8">
             <h2 class="text-2xl font-semibold mb-6">Resultado Final</h2>
             <p class="mb-8 text-slate-200 leading-relaxed">
                 Abaixo, apresentamos os indicadores do seu desafio calculados a partir das seis sessões. O <strong>Total lido</strong> representa a soma de todas as páginas. A <strong>Média</strong> revela o seu ritmo de leitura por sessão e a <strong>Classificação</strong> indica se o seu ritmo geral foi "Intenso", "Bom" ou "Inicial", tendo como base a meta de referência.
             </p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="border-t md:border-t-0 md:border-l  pt-4 md:pt-0 md:pl-4">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="border-t sm:border-t-0 first:border-t-0 pt-4 sm:pt-0">
                     <p class="text-sm uppercase tracking-wider mb-1">Total lido:</p>
                     <p id="total-paginas" class="text-3xl font-bold text-destaque mt-2">...</p>
                 </div>
-                <div class="border-t md:border-t-0 md:border-l  pt-4 md:pt-0 md:pl-4">
+                <div class="border-t sm:border-t-0 sm:border-l pt-4 sm:pt-0 sm:pl-6 border-white/20">
                     <p class="text-sm uppercase tracking-wider mb-1">Média de páginas lidas:</p>
                     <p id="media-paginas" class="text-3xl font-bold text-destaque mt-2">...</p>
                 </div>
-                <div class="border-t md:border-t-0 md:border-l pt-4 md:pt-0 md:pl-4">
+                <div class="border-t sm:border-t-0 sm:border-l pt-4 sm:pt-0 sm:pl-6 border-white/20">
                     <p class="text-sm uppercase tracking-wider mb-1">Classificação</p>
                     <p id="classificacao" class="text-3xl font-bold text-destaque mt-2">...</p>
                 </div>

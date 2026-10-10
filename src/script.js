@@ -101,7 +101,7 @@ function criarCardsSessoes(listadeSessoes){
   
   listadeSessoes.forEach(sessao => {
     const cardHTML =
-    `<article class="rounded-md border border-slate-100 shadow-sm p-5">
+    `<article class="bg-white rounded-md border border-slate-200 shadow-sm p-5 hover:shadow-md hover:-translate-y-1 transition-all duration-200">
       <h3 class="text-xl font-bold border-b border-primaria pb-2 mb-4">Sessão ${sessao.id}</h3>
       <p>Data: ${sessao.data}</p>
       <p>Páginas lidas: <span class="font-semibold text-xl text-primaria">${sessao.paginas}</span></p>
