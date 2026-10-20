@@ -5,7 +5,6 @@ const sessao4 = 0;
 const sessao5 = 30;
 const sessao6 = 10;
 
-
 const metaPorSessao = 30;
 let sessoes = [
   { id: 1, data: "05/10/2026", paginas: sessao1 },
@@ -138,7 +137,7 @@ function criarCardsSessoes(listadeSessoes){
       <h3 class="text-xl font-bold border-b border-primaria pb-2 mb-4">Sessão ${sessao.id}</h3>
       <p>Data: ${sessao.data}</p>
       <p>Páginas lidas: <span class="font-semibold text-xl text-primaria">${sessao.paginas}</span></p>
-      <p>Status: <span class="font-semibold text-xl text-primaria">${verificarMeta(sessao.paginas, metaPorSessao)}</span></p>
+      <p>Status: <span class="font-semibold text-primaria">${verificarMeta(sessao.paginas, metaPorSessao)}</span></p>
     </article>`;
     containerCards.innerHTML += cardHTML;
   });
