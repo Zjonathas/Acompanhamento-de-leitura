@@ -1,10 +1,9 @@
-const sessao1 = 10;
-const sessao2 = 20;
-const sessao3 = 30;
-const sessao4 = 30;
-const sessao5 = 40;
-const sessao6 = 40;
-
+const sessao1 = 30;
+const sessao2 = 0;
+const sessao3 = 10;
+const sessao4 = 0;
+const sessao5 = 30;
+const sessao6 = 10;
 
 const metaPorSessao = 30;
 let sessoes = [
@@ -18,31 +17,29 @@ let sessoes = [
 
 const paginasLidas = sessoes.map(sessao => sessao.paginas);
 
-function calcularTotalPaginas(){
+function calcularTotalPaginas(listadeSessoes){
   let soma = 0;
-  if (!paginasLidas || paginasLidas.length === 0){
-    return 0;
+  if (!listadeSessoes || listadeSessoes.length === 0){
+    return soma;
   }
-  paginasLidas.forEach(numero => {
-    soma += numero;
-  });
-  return soma
+  for (let i = 0; i < listadeSessoes.length; i++){
+    soma += listadeSessoes[i].paginas;
+  }
+  return soma;
 }
 
-function calcularMediaPaginas(){
-  const total = calcularTotalPaginas();
-  const quantidadeDeSessoes = paginasLidas.length;
-  if (!total || quantidadeDeSessoes === 0){
+function calcularMediaPaginas(total, quantidade){
+  if (!total || !quantidade || quantidade === 0){
     return 0;
   }
   else {
-    let media = total / quantidadeDeSessoes;
+    let media = total / quantidade;
     return media;
   }
 }
 
 function calcularClassificacao(){
-  const media = calcularMediaPaginas();
+  const media = calcularMediaPaginas(calcularTotalPaginas(sessoes), sessoes.length);
 
   if (!media || isNaN(media) || media === 0) {
     return "Nenhuma classificação";
@@ -63,10 +60,37 @@ function calcularClassificacao(){
   }
 }
 
+function verificarMeta(paginas, meta){
+  if (paginas == 0  || paginas == null || paginas == undefined){
+    return "Nenhuma leitura realizada";
+  }
+  
+  else if (paginas >= meta){
+    return "Atingiu a meta";
+  }
+  else {
+    return "Abaixo da meta";
+  }
+}
+
+function contarSessoesAtingiramMeta(listadeSessoes, meta){
+  let contador = 0;
+  if (!listadeSessoes || listadeSessoes.length === 0){
+    return contador;
+  }
+  for (let i = 0; i < listadeSessoes.length; i++){
+    if (listadeSessoes[i].paginas >= meta){
+      contador++;
+    }
+  }
+  return contador;
+}
+
 const containerCards = document.getElementById("cards-sessoes");
 const totalPaginas = document.getElementById("total-paginas");
 const mediaPaginas = document.getElementById("media-paginas");
 const classificacao = document.getElementById("classificacao");
+const metaSessao = document.getElementById("sessoes-atingiram-meta");
 
 function validarElementosResultados(elemento){
   if (!elemento || elemento === undefined){
@@ -77,14 +101,22 @@ function validarElementosResultados(elemento){
 }
 
 function criarResultados(){
+
+  const total = calcularTotalPaginas(sessoes);
+  const mediaTotal = calcularMediaPaginas(total, sessoes.length);
+  const metaAtingidaSessao = contarSessoesAtingiramMeta(sessoes, metaPorSessao);
+
   if (validarElementosResultados(totalPaginas)){
-    totalPaginas.innerHTML = calcularTotalPaginas();
+    totalPaginas.textContent = total;
   }
   if (validarElementosResultados(mediaPaginas)){
-    mediaPaginas.innerHTML = calcularMediaPaginas().toFixed(0);
+    mediaPaginas.textContent = mediaTotal.toFixed(0);
   }
   if (validarElementosResultados(classificacao)){
-    classificacao.innerHTML = calcularClassificacao();
+    classificacao.textContent = calcularClassificacao();
+  }
+  if (validarElementosResultados(metaSessao)){
+    metaSessao.textContent = `${metaAtingidaSessao}/${sessoes.length}`;
   }
 }
 
@@ -105,6 +137,7 @@ function criarCardsSessoes(listadeSessoes){
       <h3 class="text-xl font-bold border-b border-primaria pb-2 mb-4">Sessão ${sessao.id}</h3>
       <p>Data: ${sessao.data}</p>
       <p>Páginas lidas: <span class="font-semibold text-xl text-primaria">${sessao.paginas}</span></p>
+      <p>Status: <span class="font-semibold text-primaria">${verificarMeta(sessao.paginas, metaPorSessao)}</span></p>
     </article>`;
     containerCards.innerHTML += cardHTML;
   });
@@ -112,10 +145,9 @@ function criarCardsSessoes(listadeSessoes){
 
 criarCardsSessoes(sessoes);
 
-console.group('Testes');
-console.log(calcularTotalPaginas());
-
-console.log(calcularMediaPaginas());
-
-console.log(calcularClassificacao()); 
+console.group('Saída das funções');
+console.log(`Total de páginas lidas: ${calcularTotalPaginas(sessoes)}`);
+console.log(`Média de páginas lidas: ${calcularMediaPaginas(calcularTotalPaginas(sessoes), sessoes.length).toFixed(0)}`);
+console.log(`Classificação: ${calcularClassificacao()}`); 
+console.log(`Sessões que atingiram a meta: ${contarSessoesAtingiramMeta(sessoes, metaPorSessao)}/${sessoes.length}`);
 console.groupEnd();
