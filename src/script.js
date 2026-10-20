@@ -1,9 +1,9 @@
 const sessao1 = 10;
-const sessao2 = 20;
-const sessao3 = 30;
-const sessao4 = 30;
-const sessao5 = 40;
-const sessao6 = 40;
+const sessao2 = 0;
+const sessao3 = 10;
+const sessao4 = 0;
+const sessao5 = 20;
+const sessao6 = 10;
 
 
 const metaPorSessao = 30;
@@ -18,19 +18,19 @@ let sessoes = [
 
 const paginasLidas = sessoes.map(sessao => sessao.paginas);
 
-function calcularTotalPaginas(){
+function calcularTotalPaginas(listadeSessoes){
   let soma = 0;
-  if (!paginasLidas || paginasLidas.length === 0){
-    return 0;
+  if (!listadeSessoes || listadeSessoes.length === 0){
+    return soma;
   }
-  paginasLidas.forEach(numero => {
-    soma += numero;
-  });
-  return soma
+  for (let i = 0; i < listadeSessoes.length; i++){
+    soma += listadeSessoes[i].paginas;
+  }
+  return soma;
 }
 
 function calcularMediaPaginas(){
-  const total = calcularTotalPaginas();
+  const total = calcularTotalPaginas(sessoes);
   const quantidadeDeSessoes = paginasLidas.length;
   if (!total || quantidadeDeSessoes === 0){
     return 0;
@@ -78,7 +78,7 @@ function validarElementosResultados(elemento){
 
 function criarResultados(){
   if (validarElementosResultados(totalPaginas)){
-    totalPaginas.innerHTML = calcularTotalPaginas();
+    totalPaginas.innerHTML = calcularTotalPaginas(sessoes);
   }
   if (validarElementosResultados(mediaPaginas)){
     mediaPaginas.innerHTML = calcularMediaPaginas().toFixed(0);
@@ -113,7 +113,7 @@ function criarCardsSessoes(listadeSessoes){
 criarCardsSessoes(sessoes);
 
 console.group('Testes');
-console.log(calcularTotalPaginas());
+console.log(calcularTotalPaginas(sessoes));
 
 console.log(calcularMediaPaginas());
 
