@@ -2,7 +2,7 @@ const sessao1 = 30;
 const sessao2 = 0;
 const sessao3 = 10;
 const sessao4 = 0;
-const sessao5 = 20;
+const sessao5 = 30;
 const sessao6 = 10;
 
 
@@ -74,11 +74,24 @@ function verificarMeta(paginas, meta){
   }
 }
 
+function contarSessoesAtingiramMeta(listadeSessoes, meta){
+  let contador = 0;
+  if (!listadeSessoes || listadeSessoes.length === 0){
+    return contador;
+  }
+  for (let i = 0; i < listadeSessoes.length; i++){
+    if (listadeSessoes[i].paginas >= meta){
+      contador++;
+    }
+  }
+  return contador;
+}
 
 const containerCards = document.getElementById("cards-sessoes");
 const totalPaginas = document.getElementById("total-paginas");
 const mediaPaginas = document.getElementById("media-paginas");
 const classificacao = document.getElementById("classificacao");
+const metaSessao = document.getElementById("sessoes-atingiram-meta");
 
 function validarElementosResultados(elemento){
   if (!elemento || elemento === undefined){
@@ -92,6 +105,7 @@ function criarResultados(){
 
   const total = calcularTotalPaginas(sessoes);
   const mediaTotal = calcularMediaPaginas(total, sessoes.length);
+  const metaAtingidaSessao = contarSessoesAtingiramMeta(sessoes, metaPorSessao);
 
   if (validarElementosResultados(totalPaginas)){
     totalPaginas.textContent = total;
@@ -101,6 +115,9 @@ function criarResultados(){
   }
   if (validarElementosResultados(classificacao)){
     classificacao.textContent = calcularClassificacao();
+  }
+  if (validarElementosResultados(metaSessao)){
+    metaSessao.textContent = `${metaAtingidaSessao}/${sessoes.length}`;
   }
 }
 
@@ -133,4 +150,5 @@ console.group('Saída das funções');
 console.log(`Total de páginas lidas: ${calcularTotalPaginas(sessoes)}`);
 console.log(`Média de páginas lidas: ${calcularMediaPaginas(calcularTotalPaginas(sessoes), sessoes.length).toFixed(0)}`);
 console.log(`Classificação: ${calcularClassificacao()}`); 
+console.log(`Sessões que atingiram a meta: ${contarSessoesAtingiramMeta(sessoes, metaPorSessao)}/${sessoes.length}`);
 console.groupEnd();
