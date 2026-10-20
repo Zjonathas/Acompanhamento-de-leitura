@@ -29,20 +29,18 @@ function calcularTotalPaginas(listadeSessoes){
   return soma;
 }
 
-function calcularMediaPaginas(){
-  const total = calcularTotalPaginas(sessoes);
-  const quantidadeDeSessoes = paginasLidas.length;
-  if (!total || quantidadeDeSessoes === 0){
+function calcularMediaPaginas(total, quantidade){
+  if (!total || !quantidade || quantidade === 0){
     return 0;
   }
   else {
-    let media = total / quantidadeDeSessoes;
+    let media = total / quantidade;
     return media;
   }
 }
 
 function calcularClassificacao(){
-  const media = calcularMediaPaginas();
+  const media = calcularMediaPaginas(calcularTotalPaginas(sessoes), sessoes.length);
 
   if (!media || isNaN(media) || media === 0) {
     return "Nenhuma classificação";
@@ -77,11 +75,15 @@ function validarElementosResultados(elemento){
 }
 
 function criarResultados(){
+
+  const total = calcularTotalPaginas(sessoes);
+  const mediaTotal = calcularMediaPaginas(total, sessoes.length);
+
   if (validarElementosResultados(totalPaginas)){
-    totalPaginas.innerHTML = calcularTotalPaginas(sessoes);
+    totalPaginas.innerHTML = total;
   }
   if (validarElementosResultados(mediaPaginas)){
-    mediaPaginas.innerHTML = calcularMediaPaginas().toFixed(0);
+    mediaPaginas.innerHTML = mediaTotal.toFixed(0);
   }
   if (validarElementosResultados(classificacao)){
     classificacao.innerHTML = calcularClassificacao();
@@ -112,10 +114,8 @@ function criarCardsSessoes(listadeSessoes){
 
 criarCardsSessoes(sessoes);
 
-console.group('Testes');
-console.log(calcularTotalPaginas(sessoes));
-
-console.log(calcularMediaPaginas());
-
-console.log(calcularClassificacao()); 
+console.group('Saída das funções');
+console.log(`Total de páginas lidas: ${calcularTotalPaginas(sessoes)}`);
+console.log(`Média de páginas lidas: ${calcularMediaPaginas(calcularTotalPaginas(sessoes), sessoes.length).toFixed(0)}`);
+console.log(`Classificação: ${calcularClassificacao()}`); 
 console.groupEnd();
