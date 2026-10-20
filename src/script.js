@@ -1,4 +1,4 @@
-const sessao1 = 10;
+const sessao1 = 30;
 const sessao2 = 0;
 const sessao3 = 10;
 const sessao4 = 0;
@@ -61,6 +61,20 @@ function calcularClassificacao(){
   }
 }
 
+function verificarMeta(paginas, meta){
+  if (paginas == 0  || paginas == null || paginas == undefined){
+    return "Nenhuma leitura realizada";
+  }
+  
+  else if (paginas >= meta){
+    return "Atingiu a meta";
+  }
+  else {
+    return "Abaixo da meta";
+  }
+}
+
+
 const containerCards = document.getElementById("cards-sessoes");
 const totalPaginas = document.getElementById("total-paginas");
 const mediaPaginas = document.getElementById("media-paginas");
@@ -80,13 +94,13 @@ function criarResultados(){
   const mediaTotal = calcularMediaPaginas(total, sessoes.length);
 
   if (validarElementosResultados(totalPaginas)){
-    totalPaginas.innerHTML = total;
+    totalPaginas.textContent = total;
   }
   if (validarElementosResultados(mediaPaginas)){
-    mediaPaginas.innerHTML = mediaTotal.toFixed(0);
+    mediaPaginas.textContent = mediaTotal.toFixed(0);
   }
   if (validarElementosResultados(classificacao)){
-    classificacao.innerHTML = calcularClassificacao();
+    classificacao.textContent = calcularClassificacao();
   }
 }
 
@@ -107,6 +121,7 @@ function criarCardsSessoes(listadeSessoes){
       <h3 class="text-xl font-bold border-b border-primaria pb-2 mb-4">Sessão ${sessao.id}</h3>
       <p>Data: ${sessao.data}</p>
       <p>Páginas lidas: <span class="font-semibold text-xl text-primaria">${sessao.paginas}</span></p>
+      <p>Status: <span class="font-semibold text-xl text-primaria">${verificarMeta(sessao.paginas, metaPorSessao)}</span></p>
     </article>`;
     containerCards.innerHTML += cardHTML;
   });
