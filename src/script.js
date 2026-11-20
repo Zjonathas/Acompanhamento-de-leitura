@@ -1,9 +1,9 @@
 const sessao1 = 30;
 const sessao2 = 0;
 const sessao3 = 10;
-const sessao4 = 0;
+const sessao4 = 30;
 const sessao5 = 30;
-const sessao6 = 10;
+const sessao6 = 30;
 
 const metaPorSessao = 30;
 let sessoes = [
@@ -107,7 +107,7 @@ function criarResultados(){
   const metaAtingidaSessao = contarSessoesAtingiramMeta(sessoes, metaPorSessao);
 
   if (validarElementosResultados(totalPaginas)){
-    totalPaginas.textContent = total;
+    totalPaginas.textContent = total.toString();
   }
   if (validarElementosResultados(mediaPaginas)){
     mediaPaginas.textContent = mediaTotal.toFixed(0);
