@@ -4,7 +4,8 @@
   "description": "Calcula o total de páginas, a média por sessão, quantas sessões alcançaram a meta e uma classificação como Leitura intensa, Bom ritmo ou Ritmo inicial.",
   "main": "index.js",
   "scripts": {
-    "dev": "tailwindcss -i ./src/input.css -o ./src/output.css --watch=always --poll",
+    "dev:css": "tailwindcss -i ./src/input.css -o ./src/output.css --watch=always --poll",
+    "dev:ts": "tsc",
     "build": "tailwindcss -i ./src/input.css -o ./src/output.css --minify"
   },
   "repository": {
