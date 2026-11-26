@@ -1,6 +1,36 @@
 services:
-  tailwind:
+  dev:
     build: .
     volumes:
       - .:/app
       - /app/node_modules
+
+  web:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/usr/share/nginx/html:ro
+      - ./dist:/usr/share/nginx/dist:ro
+    configs:
+      - source: nginx_conf
+        target: /etc/nginx/conf.d/default.conf
+    depends_on:
+      - dev
+
+configs:
+  nginx_conf:
+    content: |
+      server {
+        listen 80;
+        root /usr/share/nginx/html;
+        index index.html;
+
+        location / {
+          try_files $$uri $$uri/ =404;
+        }
+
+        location /dist/ {
+          alias /usr/share/nginx/dist/;
+        }
+      }

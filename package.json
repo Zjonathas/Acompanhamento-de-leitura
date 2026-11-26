@@ -4,9 +4,13 @@
   "description": "Calcula o total de páginas, a média por sessão, quantas sessões alcançaram a meta e uma classificação como Leitura intensa, Bom ritmo ou Ritmo inicial.",
   "main": "index.js",
   "scripts": {
+    "dev": "concurrently -n css,ts -c blue,cyan \"npm run dev:css\" \"npm run dev:ts\"",
     "dev:css": "tailwindcss -i ./src/input.css -o ./src/output.css --watch=always --poll",
-    "dev:ts": "tsc",
-    "build": "tailwindcss -i ./src/input.css -o ./src/output.css --minify"
+    "dev:ts": "tsc --watch --preserveWatchOutput",
+    "build": "npm run build:css && npm run build:ts",
+    "build:css": "tailwindcss -i ./src/input.css -o ./src/output.css --minify",
+    "build:ts": "tsc",
+    "check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -21,6 +25,7 @@
   "homepage": "https://github.com/Zjonathas/Acompanhamento-de-leitura#readme",
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
+    "concurrently": "^10.0.7",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2"
   }
